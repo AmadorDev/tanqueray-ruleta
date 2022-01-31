@@ -38,7 +38,7 @@ export default function ruleta() {
   }
 
   return (
-    <div className="container-fluid bg_ruleta">
+    <div className="bg_ruleta">
       <div className="row justify-content-center d-flex align-items-center row_add">
         <div className="col-8 text-center">
           <img
