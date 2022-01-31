@@ -12,7 +12,7 @@ export default function ruleta() {
   function girar() {
     Splay();
     let rand = Math.floor(Math.random() * (maxale - 0)) + 0;
-    calcular(premios[7]);
+    calcular(premios[rand]);
   }
 
   function calcular(item) {
@@ -40,7 +40,7 @@ export default function ruleta() {
   return (
     <div className="container-fluid bg_ruleta">
       <div className="row justify-content-center d-flex align-items-center row_add">
-        <div className="col-8">
+        <div className="col-8 text-center">
           <img
             src="/images/ruleta_d.png"
             className="img_ruleta ruleta"
