@@ -1,123 +1,105 @@
-body {}
+body {
+}
 
-$white:#FFFFFF;
+$white: #ffffff;
 
 .img_add {
-    background-size: cover;
-    background-position: center;
+  background-size: cover;
+  background-position: center;
 
-    // height: 100% !important;
+  // height: 100% !important;
 }
-
 
 .row_add {
-    height: 100vh;
-    padding: 0px;
-    margin: 0px !important;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px !important;
 }
 
-
-
 .bg_ruleta {
+  background-image: url("/images/bg_prize.png");
+  width: 100% !important;
+  height: 100vh;
+  max-width: 100%;
 
-    background-image: url('/images/bg_prize.png');
-    width: 100% !important;
-    ;
-    height: 100vh;
-    max-width: 100%;
-
-
-    //     background-size:contain;
-    //   background-repeat:no-repeat;
-    //   background-position:center center;
-
+  //     background-size:contain;
+  //   background-repeat:no-repeat;
+  //   background-position:center center;
 }
 
 .img_ruleta {
-    // width: 580px;
-    // height: 580px;
+  // width: 580px;
+  // height: 580px;
 }
 
-
-
-
 .img_prize {
-    //  width: 100%;
-    //  height: 80vh;
+  //  width: 100%;
+  //  height: 80vh;
 }
 
 .t_title {
-    font-size: 6rem;
-    color: $white;
+  font-size: 6rem;
+  color: $white;
 }
 
 .t_subtitle {
-    font-size: 3rem;
-    color: $white;
+  font-size: 3rem;
+  color: $white;
 }
 
 ////////
 .img_class {
-    width: 100%;
-    height: 100vh !important;
+  width: 100%;
+  height: 100vh !important;
 }
 
 .sonido {
-    display: none
+  display: none;
 }
 
 .prize-text {
-    list-style: normal !important;
+  list-style: normal !important;
 }
-
-
 
 //------------------------------------ ruleta ------------------------
 .d-absolute {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background: chocolate;
-    width: 100%;
-    height: 80vh;
-}
-.d-absolute-prize{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    background: chocolate;
-    width: 100%;
-    height: 60vh;
-}
+  position: absolute;
 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.d-absolute-prize {
+  position: absolute;
+   width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .d_ruleta {
-    position: relative;
-    margin: auto;
-    background: blue;
+  position: relative;
+  margin: auto;
+  width: 100% !important;
+  background: blue;
 }
 .d_ruleta_prize {
-    
-    padding: 0px;
-    margin: 0px;
     position: relative;
     margin: auto;
-    background: red;
+    width: 100% !important;
+    background: blue;
+}
+.row_width{
+    width: 100%;
 }
 
 .ruleta {
-    transition: all 5s;
+  transition: all 5s;
 }
 .gancho {
-    position: absolute;
-    top: 50px;
-    width: 45px;
-    height: 70px;
-    margin-left: 48.2%;
+  position: absolute;
+  top: 50px;
+  width: 45px;
+  height: 70px;
+  margin-left: 48.2%;
 }
