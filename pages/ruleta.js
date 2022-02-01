@@ -29,9 +29,9 @@ export default function ruleta() {
     }, 5000);
   }
   function renderResult() {
-    // setTimeout(() => {
-    //   router.push("/prize");
-    // }, 1000);
+    setTimeout(() => {
+      router.push("/prize");
+    }, 1000);
   }
   function Splay() {
     document.getElementById("rsonido").play();
