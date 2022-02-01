@@ -1,17 +1,16 @@
-body{
-    
-}
+body {}
+
 $white:#FFFFFF;
 
-.img_add{
+.img_add {
     background-size: cover;
     background-position: center;
-   
+
     // height: 100% !important;
 }
 
 
-.row_add{
+.row_add {
     height: 100vh;
     padding: 0px;
     margin: 0px !important;
@@ -19,68 +18,88 @@ $white:#FFFFFF;
 
 
 
-.bg_ruleta{
-   
+.bg_ruleta {
+
     background-image: url('/images/bg_prize.png');
-    width: 100% !important;;
-    height:100vh; 
+    width: 100% !important;
+    ;
+    height: 100vh;
     max-width: 100%;
- 
- 
-//     background-size:contain;
-//   background-repeat:no-repeat;
-//   background-position:center center;
-   
+
+
+    //     background-size:contain;
+    //   background-repeat:no-repeat;
+    //   background-position:center center;
+
 }
 
-.img_ruleta{
+.img_ruleta {
     // width: 580px;
     // height: 580px;
 }
 
 
-.ruleta {
-    width: 635px;
-    height: 598px;
-    z-index: 100;
-    transition: all 5s;
-    // width: 100%;
-    // height: 100vh;
-  }
 
 
- .img_prize{
+.img_prize {
     //  width: 100%;
     //  height: 80vh;
- }
+}
 
- .t_title{
-     font-size: 6rem;
-     color: $white;
- }
- .t_subtitle{
+.t_title {
+    font-size: 6rem;
+    color: $white;
+}
+
+.t_subtitle {
     font-size: 3rem;
     color: $white;
 }
 
 ////////
-.img_class{
+.img_class {
     width: 100%;
     height: 100vh !important;
 }
 
-.sonido{
+.sonido {
     display: none
 }
 
-.gancho{
-    position:absolute;
+.prize-text {
+    list-style: normal !important;
+}
+
+
+
+//------------------------------------ ruleta ------------------------
+.d-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: chocolate;
+    width: 100%;
+    height: 80vh;
+}
+
+
+.d_ruleta {
+    
+    position: relative;
+    margin: auto;
+    background: blue;
+}
+
+.ruleta {
+    transition: all 5s;
+}
+.gancho {
+    position: absolute;
     top: 116px;
     width: 45px;
     height: 70px;
-    margin-left: 48%;
-}
-
-.prize-text{
-    list-style: normal !important;
+    margin-left: 48.2%;
 }

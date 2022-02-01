@@ -29,34 +29,65 @@ export default function ruleta() {
     }, 5000);
   }
   function renderResult() {
-    setTimeout(() => {
-      router.push("/prize");
-    }, 1000);
+    // setTimeout(() => {
+    //   router.push("/prize");
+    // }, 1000);
   }
   function Splay() {
     document.getElementById("rsonido").play();
   }
 
   return (
-    <div className="bg_ruleta">
-      <div className="row justify-content-center d-flex align-items-center row_add">
-        <div className="col-8 text-center">
-          <img
+
+    <div className="container-fluid p-0 m-0 ">
+      <div className="row bg-dark m-0 p-0">
+        <div className="col-12 p-0 m-0">
+          <img src="/images/bg_prize.png" className="img-fluid img_class" />
+        </div>
+      </div>
+      <audio id="songclick" controls className="sonido">
+          <source type="audio/mp3" src="/sonido/click.mp3"></source>
+        </audio>
+        <div className="d-absolute">
+        <div className="col-8 text-center d_ruleta">
+           <img
             src="/images/ruleta_d.png"
             className="img_ruleta ruleta"
-            onClick={girar}
-            id="ruleta"
-          ></img>
+             onClick={girar}
+             id="ruleta"
+           ></img>
         </div>
-      </div>
-      <div>
-        <div>
-          <img src="/images/gancho.png" className="gancho"></img>
         </div>
-      </div>
-      <audio id="rsonido" controls className="sonido">
+           <div>
+         <div>
+           <img src="/images/gancho.png" className="gancho"></img>
+         </div>
+       </div>
+       <audio id="rsonido" controls className="sonido">
         <source type="audio/mp3" src="/sonido/ruletad.mp3"></source>
       </audio>
     </div>
+
+
+    // <div className="bg_ruleta">
+    //   <div className="row justify-content-center d-flex align-items-center row_add">
+    //     <div className="col-8 text-center">
+    //       <img
+    //         src="/images/ruleta_d.png"
+    //         className="img_ruleta ruleta"
+    //         onClick={girar}
+    //         id="ruleta"
+    //       ></img>
+    //     </div>
+    //   </div>
+    //   <div>
+    //     <div>
+    //       <img src="/images/gancho.png" className="gancho"></img>
+    //     </div>
+    //   </div>
+    //   <audio id="rsonido" controls className="sonido">
+    //     <source type="audio/mp3" src="/sonido/ruletad.mp3"></source>
+    //   </audio>
+    // </div>
   );
 }
