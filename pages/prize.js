@@ -16,10 +16,10 @@ export default function prize() {
     }
     play();
     function play() {
-      // document.getElementById("song").play();
-      // setTimeout(()=> {
-      //   router.push("/");
-      // },10000)
+      document.getElementById("song").play();
+      setTimeout(()=> {
+        router.push("/");
+      },10000)
     }
   });
   return (
@@ -55,7 +55,7 @@ export default function prize() {
         <div className="row justify-content-center d-flex align-items-center row_width">
           <div className="col-6 d-flex justify-content-center text-center">
             {" "}
-            <img src="/images/repo.png" className="img_prize "></img>
+            <img src={winner.url} className="img_prize "></img>
           </div>
           <div className="col-6 text-center prize-text">
             <p className="t_title">{winner.title} </p>
