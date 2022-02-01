@@ -51,11 +51,11 @@ export default function prize() {
       <audio id="songclick" controls className="sonido">
         <source type="audio/mp3" src="/sonido/click.mp3"></source>
       </audio>
-      <div className="d-absolute">
-        <div className="row justify-content-center d-flex align-items-center m-0 p-0">
+      <div className="d-absolute-prize">
+        <div className="row justify-content-center d-flex align-items-center m-0 ">
           <div className="col-6 d-flex justify-content-center text-center">
             {" "}
-            <img src="/images/repo.png" className="img_prize "></img>
+            <img src={winner.url} className="img_prize "></img>
           </div>
           <div className="col-6 text-center prize-text">
             <p className="t_title">{winner.title} </p>
