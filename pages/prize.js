@@ -16,10 +16,10 @@ export default function prize() {
     }
     play();
     function play() {
-      document.getElementById("song").play();
-      setTimeout(()=> {
-        router.push("/");
-      },10000)
+      // document.getElementById("song").play();
+      // setTimeout(()=> {
+      //   router.push("/");
+      // },10000)
     }
   });
   return (
