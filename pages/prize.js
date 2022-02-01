@@ -16,10 +16,10 @@ export default function prize() {
     }
     play();
     function play() {
-      // document.getElementById("song").play();
-      // setTimeout(()=> {
-      //   router.push("/");
-      // },10000)
+      document.getElementById("song").play();
+      setTimeout(()=> {
+        router.push("/");
+      },10000)
     }
   });
   return (
@@ -36,9 +36,9 @@ export default function prize() {
     //         {winner.quality} {winner.subtitle}COPA ACRILICA
     //       </p>
     //     </div>
-    //     <audio id="song" controls className="sonido">
-    //       <source type="audio/mp3" src={song}></source>
-    //     </audio>
+        // <audio id="song" controls className="sonido">
+        //   <source type="audio/mp3" src={song}></source>
+        // </audio>
     //   </div>
     // </div>
 
@@ -58,17 +58,17 @@ export default function prize() {
             <img src="/images/repo.png" className="img_prize "></img>
           </div>
           <div className="col-6 text-center prize-text">
-            <p className="t_title">{winner.title}¡GANASTE! </p>
+            <p className="t_title">{winner.title} </p>
             <p className="t_subtitle">
               {" "}
-              {winner.quality} {winner.subtitle}1 COPA ACRILICA
+              {winner.quality} {winner.subtitle}
             </p>
           </div>
         </div>
       </div>
-      <audio id="rsonido" controls className="sonido">
-        <source type="audio/mp3" src="/sonido/ruletad.mp3"></source>
-      </audio>
+      <audio id="song" controls className="sonido">
+          <source type="audio/mp3" src={song}></source>
+        </audio>
     </div>
   );
 }
