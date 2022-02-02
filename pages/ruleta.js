@@ -12,7 +12,7 @@ export default function ruleta() {
   function girar() {
     Splay();
     let rand = Math.floor(Math.random() * (maxale - 0)) + 0;
-    calcular(premios[rand]);
+    calcular(premios[7]);
   }
 
   function calcular(item) {

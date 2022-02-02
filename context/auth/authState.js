@@ -2,9 +2,12 @@ import React, { useReducer, useState, useEffect } from "react";
 
 import authContext from "./authContext";
 import authReducer from "./authReducer";
-import { ADD_PREMIO, ADD_WINNER } from "../../types";
+import { ADD_PREMIO, ADD_WINNER ,ADD_TIENDA} from "../../types";
 
 const AuthState = ({ children }) => {
+  const Tienda = typeof window !== 'undefined' ? localStorage.getItem('tienda') : '';
+  console.log("state",Tienda)
+
   const initialState = {
     premios: [
       { id: "1", value: 7220, status: true, subtitle: "Cooler" ,url:'/images/cooler.png' ,title:'¡GANASTE!' ,quality:1},
@@ -19,6 +22,7 @@ const AuthState = ({ children }) => {
       { id: "10", value: 9490, status: true, subtitle: "COPA ACRILICA",url:'/images/copa_green.png', title:'¡GANASTE!',quality:1 },
     ],
     winner: {},
+    tienda:Tienda
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -37,13 +41,23 @@ const AuthState = ({ children }) => {
     });
   };
 
+  const setTienda = (data) => {
+    dispatch({
+      type: ADD_TIENDA,
+      value: data,
+    });
+    localStorage.setItem('tienda', data);
+  };
+
   return (
     <authContext.Provider
       value={{
         premios: state.premios,
         winner: state.winner,
+        tienda:state.tienda,
         addPremio,
         setWinner,
+        setTienda,
       }}
     >
       {children}

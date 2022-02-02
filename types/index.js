@@ -4,3 +4,5 @@ export const REMOVE_PREMIO = 'REMOVE_PREMIO';
 export const UPDATE_PREMIO = 'UPDATE_PREMIO';
 
 export const ADD_WINNER = 'ADD_WINNER';
+
+export const ADD_TIENDA = 'ADD_TIENDA';
