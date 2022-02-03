@@ -42,10 +42,10 @@ const home = () => {
   return (
     <>
       <Head>
-        <meta
+        {/* <meta
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
-        />
+        /> */}
       </Head>
       <div className="container-fluid p-0 m-0 ">
         <div className="row bg-dark m-0 p-0" onClick={renderRuleta}>
