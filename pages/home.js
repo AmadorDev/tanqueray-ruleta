@@ -1,16 +1,16 @@
-import { useContext,useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
 
 import AuthContext from "../context/auth/authContext";
 
 const home = () => {
   const router = useRouter();
-  const { tienda,setTienda } = useContext(AuthContext);
+  const { tienda, setTienda,premios } = useContext(AuthContext);
 
-  console.log("home tienda",tienda)
-
+  const [txt_tienda, setTxt_tienda] = useState("");
+ 
+  const select = useRef(null);
   function renderRuleta() {
     document.getElementById("songclick").play();
     setTimeout(() => {
@@ -19,22 +19,24 @@ const home = () => {
   }
 
   useEffect(() => {
-    // document.getElementById("modal").style.display = 'flex'
-    // if(tienda === null){
-    //   document.getElementById("modal").style.display = 'flex'
-    // }
-    
-    return () => {
-      
-    };
+    if (tienda === null) {
+      document.getElementById("modal").style.display = "flex";
+    } else {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    return () => {};
   }, [tienda]);
-  
-  // function addTienda(){
-  //   document.getElementById("modal").style.display = 'none'
-  //   let txt = document.getElementById("txt_tienda")
-  //   setTienda(txt.value)
-    
-  // }
+
+  function addTienda() {
+    if (txt_tienda != "") {
+      document.getElementById("modal").style.display = "none";
+      setTienda(txt_tienda);
+    } else {
+      select.current.focus();
+      return false;
+    }
+  }
 
   return (
     <div className="container-fluid p-0 m-0 ">
@@ -43,16 +45,37 @@ const home = () => {
           <img src="/images/home.png" className="img-fluid img_class" />
         </div>
       </div>
-     
-        {/* <div className="modal" id="modal">
-          <div className="modal-content">
-            <label className="form-label">Ingresar nombre de la tienda</label>
-            <input className="form-control" id="txt_tienda"></input>
-            <button className="btn btn-primary mt-1" onClick={addTienda}>GUARDAR</button>
-            
+
+      <div className="modal" id="modal">
+        <div className="modal-content">
+          <div className="row justify-content-center align-items-center p-3">
+            <div className="col-8">
+              {" "}
+              <label className="form-label">Seleccionar Tienda</label>
+              <select
+                ref={select}
+                className="form-control"
+                onChange={(e) => setTxt_tienda(e.target.value)}
+                value={txt_tienda}
+              >
+                <option value=""></option>
+                <option value="A">V.Benavides</option>
+                <option value="B">V.Asia</option>
+                <option value="C">D.Dasso</option>
+                <option value="D">P.Cortijo</option>
+                <option value="E">P.CInca</option>
+              </select>
+              <button
+                className="btn btn-per mt-2"
+                type="button"
+                onClick={addTienda}
+              >
+                INGRESAR
+              </button>
+            </div>
           </div>
-        </div> */}
-     
+        </div>
+      </div>
 
       <audio id="songclick" controls className="sonido">
         <source type="audio/mp3" src="/sonido/click.mp3"></source>

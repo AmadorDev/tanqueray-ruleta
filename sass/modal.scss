@@ -12,13 +12,13 @@
     animation: modal-show 0.5s 1 forwards;
   }
   
-  .modal-content {
-    position: relative;
-    width: 480px;
-    height: 180px;
-    padding: 24px;
-    background-color: white;
-  }
+  // .modal-content {
+  //   position: relative;
+  //   width: 480px !important;
+  //   height: 180px !important;
+  //   padding: 24px;
+  //   background-color: white;
+  // }
   
   .modal:target {
     display: flex;

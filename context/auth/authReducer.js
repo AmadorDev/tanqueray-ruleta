@@ -12,7 +12,7 @@ const authReducer = (state, action) => {
     case ADD_PREMIO:
       return {
         ...state,
-        premios: [...state.premios, action.value],
+        premios:  action.value,
       };
     case ADD_WINNER:
       return {
@@ -20,7 +20,6 @@ const authReducer = (state, action) => {
         winner: action.value,
       };
     case ADD_TIENDA:
-      console.log("reducer",action)
       return {
         ...state,
         tienda: action.value,

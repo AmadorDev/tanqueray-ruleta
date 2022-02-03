@@ -2,36 +2,62 @@ import React, { useReducer, useState, useEffect } from "react";
 
 import authContext from "./authContext";
 import authReducer from "./authReducer";
-import { ADD_PREMIO, ADD_WINNER ,ADD_TIENDA} from "../../types";
+import { ADD_PREMIO, ADD_WINNER, ADD_TIENDA } from "../../types";
+import { getTienda } from "../../api/TiendaApi";
+import { getSorteo } from "../../api/SorteoApi";
 
 const AuthState = ({ children }) => {
-  const Tienda = typeof window !== 'undefined' ? localStorage.getItem('tienda') : '';
-  console.log("state",Tienda)
+  const Tienda =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("tienda"))
+      : {};
+  const premios =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("premios"))
+      : [];
+  const now = typeof window !== "undefined" ? localStorage.getItem("now") : "";
+
+  let nowSystem = new Date();
+  let nowSystemFull = `${nowSystem.getFullYear()}-${nowSystem.getMonth()}-${nowSystem.getDate()}`;
 
   const initialState = {
-    premios: [
-      { id: "1", value: 7220, status: true, subtitle: "Cooler" ,url:'/images/cooler.png' ,title:'¡GANASTE!' ,quality:1},
-      { id: "2", value: 6570, status: true, subtitle: "SIGUE INTENTANDO GRACIAS POR TU PREFERENCIA " ,url:'/images/looser.png', title:'¡OOPS!',quality:''},
-      { id: "3", value: 8510, status: true, subtitle: "Reposadera",url:'/images/repo.png' ,title:'¡GANASTE!',quality:1},
-      { id: "4", value: 8210, status: true, subtitle: "Visera",url:'/images/visera.png',title:'¡GANASTE!' ,quality:1},
-      { id: "5", value: 7580, status: true, subtitle: "Cooler" ,url:'/images/cooler.png',title:'¡GANASTE!',quality:1},
-      { id: "6", value: 8510, status: true, subtitle: "Reposadera",url:'/images/repo.png' ,title:'¡GANASTE!',quality:1},
-      { id: "7", value: 7850, status: true, subtitle: "Visera" ,url:'/images/visera.png' ,title:'¡GANASTE!',quality:1},
-      { id: "8", value: 7290, status: true, subtitle: "SIGUE INTENTANDO GRACIAS POR TU PREFERENCIA",url:'/images/looser.png' ,title:'¡OOPS!',quality:''},
-       { id: "9", value: 9350, status: true, subtitle: "COPA ACRILICA" ,url:'/images/copa_orange.png', title:'¡GANASTE!',quality:1},
-      { id: "10", value: 9490, status: true, subtitle: "COPA ACRILICA",url:'/images/copa_green.png', title:'¡GANASTE!',quality:1 },
-    ],
+    premios: premios,
     winner: {},
-    tienda:Tienda
+    tienda: Tienda,
+    now: now,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const addPremio = (data) => {
-    dispatch({
-      type: ADD_PREMIO,
-      value: data,
-    });
+  useEffect(() => {
+    console.log("----loader context state--");
+
+    if (state.tienda != null) {
+      //si hay tienda
+      setPremio(state?.tienda.id);
+    }
+  }, [state.tienda]);
+
+  const setPremio = async (id) => {
+    let now = new Date();
+    let nowFull = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+
+    try {
+      const resp = await getSorteo(id);
+      console.log("CALL API");
+      if (resp != null) {
+        if (resp.msg === true) {
+          dispatch({
+            type: ADD_PREMIO,
+            value: resp.data,
+          });
+          localStorage.setItem("premios", JSON.stringify(resp.data));
+          localStorage.setItem("now", nowFull);
+        }
+      }
+    } catch (error) {
+      console.log("LOG:", error);
+    }
   };
 
   const setWinner = (data) => {
@@ -41,12 +67,19 @@ const AuthState = ({ children }) => {
     });
   };
 
-  const setTienda = (data) => {
-    dispatch({
-      type: ADD_TIENDA,
-      value: data,
-    });
-    localStorage.setItem('tienda', data);
+  const setTienda = async (data) => {
+    try {
+      const response = await getTienda(data);
+      if (response.msg === true) {
+        dispatch({
+          type: ADD_TIENDA,
+          value: response.data[0],
+        });
+        localStorage.setItem("tienda", JSON.stringify(response.data[0]));
+      }
+    } catch (error) {
+      console.log("LOG:", error);
+    }
   };
 
   return (
@@ -54,10 +87,10 @@ const AuthState = ({ children }) => {
       value={{
         premios: state.premios,
         winner: state.winner,
-        tienda:state.tienda,
-        addPremio,
+        tienda: state.tienda,
         setWinner,
         setTienda,
+        setPremio,
       }}
     >
       {children}

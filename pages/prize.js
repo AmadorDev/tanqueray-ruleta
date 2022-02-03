@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import AuthContext from "../context/auth/authContext";
+import { setSorteo } from "../api/SorteoApi";
 
 export default function prize() {
-  const { winner } = useContext(AuthContext);
+  const { winner, setPremio, tienda } = useContext(AuthContext);
   const [song, setsong] = useState("");
-
+  
   const router = useRouter();
+
+  const mounted = useRef(true);
 
   useEffect(() => {
     if (winner.quality != "") {
@@ -15,13 +18,23 @@ export default function prize() {
       setsong("/sonido/losserd.mp3");
     }
     play();
-    function play() {
-      document.getElementById("song").play();
-      setTimeout(()=> {
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
+  async function play() {
+    document.getElementById("song").play();
+    const resp = await setSorteo(winner.sorteo_id);
+    if (resp.msg === true) {
+    
+      setPremio(tienda?.id);
+      setTimeout(() => {
+        
         router.push("/");
-      },10000)
+      }, 10000);
     }
-  });
+  }
   return (
     // <div className="bg_ruleta">
     //   <div className="row justify-content-center d-flex align-items-center row_add">
@@ -36,9 +49,9 @@ export default function prize() {
     //         {winner.quality} {winner.subtitle}COPA ACRILICA
     //       </p>
     //     </div>
-        // <audio id="song" controls className="sonido">
-        //   <source type="audio/mp3" src={song}></source>
-        // </audio>
+    // <audio id="song" controls className="sonido">
+    //   <source type="audio/mp3" src={song}></source>
+    // </audio>
     //   </div>
     // </div>
 
@@ -58,17 +71,17 @@ export default function prize() {
             <img src={winner.url} className="img_prize "></img>
           </div>
           <div className="col-6 text-center prize-text">
-            <p className="t_title">{winner.title} </p>
+            <p className="t_title">{winner.message} </p>
             <p className="t_subtitle">
               {" "}
-              {winner.quality} {winner.subtitle}
+              {winner.message === "¡OOPS!" ? null : "1"} {winner.short_name}
             </p>
           </div>
         </div>
       </div>
       <audio id="song" controls className="sonido">
-          <source type="audio/mp3" src={song}></source>
-        </audio>
+        <source type="audio/mp3" src={song}></source>
+      </audio>
     </div>
   );
 }

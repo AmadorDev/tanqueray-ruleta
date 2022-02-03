@@ -1,28 +1,34 @@
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/auth/authContext";
 
 export default function ruleta() {
   const { addPremio, premios, setWinner } = useContext(AuthContext);
-  console.log(premios);
-  const router = useRouter();
+  let router = useRouter();
 
-  const maxale = parseInt(premios.length) - 1;
+
+  //cuando no hay premios
+
+  useEffect(() => {
+    if (premios === null) {
+      router.push("/");
+    }
+  }, []);
 
   function girar() {
     Splay();
+    const maxale = parseInt(premios.length) - 1;
     let rand = Math.floor(Math.random() * (maxale - 0)) + 0;
-    calcular(premios[7]);
+    calcular(premios[rand]);
   }
 
   function calcular(item) {
     let ruleta = document.getElementById("ruleta");
-    let valor = item.value / 360;
+    let valor = item.value_ruleta / 360;
     valor = (valor - parseInt(valor.toString().split(".")[0])) * 360;
 
-    ruleta.style.transform = "rotate(" + parseInt(item.value) + "deg)";
-    console.log(item.value);
-    console.log(valor);
+    ruleta.style.transform = "rotate(" + parseInt(item.value_ruleta) + "deg)";
+
     setTimeout(() => {
       setWinner(item);
       renderResult();
@@ -38,7 +44,6 @@ export default function ruleta() {
   }
 
   return (
-
     <div className="container-fluid p-0 m-0 ">
       <div className="row bg-dark m-0 p-0">
         <div className="col-12 p-0 m-0">
@@ -46,28 +51,27 @@ export default function ruleta() {
         </div>
       </div>
       <audio id="songclick" controls className="sonido">
-          <source type="audio/mp3" src="/sonido/click.mp3"></source>
-        </audio>
-        <div className="d-absolute">
+        <source type="audio/mp3" src="/sonido/click.mp3"></source>
+      </audio>
+      <div className="d-absolute">
         <div className="col-8 text-center d_ruleta">
-           <img
+          <img
             src="/images/ruleta_d.png"
             className="img_ruleta ruleta"
-             onClick={girar}
-             id="ruleta"
-           ></img>
+            onClick={girar}
+            id="ruleta"
+          ></img>
         </div>
+      </div>
+      <div>
+        <div>
+          <img src="/images/gancho.png" className="gancho"></img>
         </div>
-           <div>
-         <div>
-           <img src="/images/gancho.png" className="gancho"></img>
-         </div>
-       </div>
-       <audio id="rsonido" controls className="sonido">
+      </div>
+      <audio id="rsonido" controls className="sonido">
         <source type="audio/mp3" src="/sonido/ruletad.mp3"></source>
       </audio>
     </div>
-
 
     // <div className="bg_ruleta">
     //   <div className="row justify-content-center d-flex align-items-center row_add">
